@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>距離計算</title>
+    <script>
+        function calculateDistance() {
+            // ユーザーの入力値を取得
+            let m = parseFloat(document.getElementById("mValue").value);
+            let n = parseFloat(document.getElementById("nValue").value);
+            
+            // エラー処理（正しい数値が入力されているかチェック）
+            if (isNaN(m) || isNaN(n)) {
+                document.getElementById("result").innerText = "有効な数値を入力してください。";
+                return;
+            }
+
+            // 角度 n をラジアンへ変換
+            let radian = n * (Math.PI / 180);
+
+            // 距離計算（2m * sin(n)）
+            let distance = 2 * m * Math.sin(radian);
+
+            // 結果を表示（小数点15桁まで表示）
+            document.getElementById("result").innerText = "点Pと点Qの距離: " + distance.toFixed(15) + " m";
+        }
+    </script>
+</head>
+<body>
+    <h2>点Pと点Qの距離を計算</h2>
+    <label>mの値（距離）: <input type="number" id="mValue" step="any"></label><br>
+    <label>nの値（角度）: <input type="number" id="nValue" step="any"></label><br>
+    <button onclick="calculateDistance()">計算する</button>
+    <p id="result"></p>
+</body>
+</html>
